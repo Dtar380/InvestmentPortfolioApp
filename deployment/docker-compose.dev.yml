@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ../backend
+      dockerfile: docker/backend.dev.Dockerfile
+    container_name: backend-dev
+    env_file:
+      - .env.dev
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: docker/frontend.dev.Dockerfile
+    container_name: frontend-dev
+    env_file:
+      - .env.dev
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+
+  db:
+    image: postgres:16
+    container_name: postgres-dev
+    restart: always
+    env_file:
+      - .env.dev
+    volumes:
+      - pgdata-dev:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
+volumes:
+  pgdata-dev:
+
+networks:
+  app-network:
+    driver: bridge
