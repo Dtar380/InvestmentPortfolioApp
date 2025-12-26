@@ -22,9 +22,6 @@ RUN poetry config virtualenvs.create false \
 # Copy application code
 COPY . .
 
-ENV PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
-
 # Expose port and run the application
 EXPOSE 8000
 CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
