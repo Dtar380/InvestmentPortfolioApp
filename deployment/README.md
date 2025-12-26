@@ -21,13 +21,15 @@ Quick links:
 
 ## Local development (fast)
 1. Copy or review `.env.dev` and set any local overrides.
-2. Start services in the foreground (rebuild images when you change source code):
+
+2. Build and deploy using the repository helper scripts (recommended):
 
 ```bash
-docker-compose -f deployment/docker-compose.dev.yml up --build
+bash ./scripts/build.sh dev
+bash ./scripts/deploy.sh dev
 ```
 
-3. Stop services with `CTRL+C` or in another shell:
+3. To stop services (advanced):
 
 ```bash
 docker-compose -f deployment/docker-compose.dev.yml down
@@ -38,26 +40,22 @@ Notes:
 
 ## Production (simple docker-compose)
 1. Copy `.env.prod` to the server and ensure file permissions restrict access.
-2. Build and start in detached mode:
+2. Build and deploy using the repository helper scripts (recommended):
 
 ```bash
-docker-compose -f deployment/docker-compose.prod.yml up -d --build
+bash ./scripts/build.sh prod
+bash ./scripts/deploy.sh prod
 ```
 
-3. To view logs:
+3. To view logs or perform advanced maintenance, you can use Docker Compose directly:
 
 ```bash
 docker-compose -f deployment/docker-compose.prod.yml logs -f
-```
-
-4. To update to a new image or configuration:
-
-```bash
 docker-compose -f deployment/docker-compose.prod.yml pull
 docker-compose -f deployment/docker-compose.prod.yml up -d --remove-orphans
 ```
 
-5. To stop and remove containers:
+4. To stop and remove containers (advanced):
 
 ```bash
 docker-compose -f deployment/docker-compose.prod.yml down
