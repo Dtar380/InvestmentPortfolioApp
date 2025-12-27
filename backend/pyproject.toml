@@ -21,6 +21,7 @@ alembic = "^1.17.2"
 uvicorn = {extras = ["standard"], version = "^0.40.0"}
 httpx = "^0.28.1"
 yfinance = "^1.0"
+psycopg = {extras = ["binary"], version = "^3.3.2"}
 
 [tool.poetry.group.format]
 optional = true
