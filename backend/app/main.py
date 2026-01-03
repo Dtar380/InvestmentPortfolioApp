@@ -10,6 +10,8 @@ from .config import (
     CORS_ORIGINS
 )
 
+from .api.v1.routes import router as api_v1_router
+
 app = FastAPI(
     title=NAME,
     version=VERSION,
@@ -29,5 +31,14 @@ async def main():
     return {"message": "Welcome to the Investment Portfolio API!"}
 
 
+app.include_router(api_v1_router, prefix="/api/v1")
+
 if __name__ == "__main__":
-    main()
+    import uvicorn
+
+    from .config import HOST, PORT
+    uvicorn.run(
+        "app.main:app",
+        host=HOST,
+        port=PORT
+    )
