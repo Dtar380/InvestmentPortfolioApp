@@ -10,3 +10,7 @@ router = APIRouter()
 router.include_router(auth_router, prefix="/auth", tags=["auth"])
 router.include_router(investments_router, prefix="/investments", tags=["investments"])
 router.include_router(users_router, prefix="/users", tags=["users"])
+
+@router.get("/up")
+async def up():
+    return {"status": "API service is up and running!"}

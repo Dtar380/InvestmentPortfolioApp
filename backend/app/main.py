@@ -26,11 +26,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-async def main():
-    return {"message": "Welcome to the Investment Portfolio API!"}
-
-
 app.include_router(api_v1_router, prefix="/api/v1")
 
 if __name__ == "__main__":

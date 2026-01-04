@@ -11,6 +11,9 @@ authors = ["Dtar380"]
 maintainers = ["Dtar380"]
 packages = [{include = "app"}]
 
+[tool.poetry.scripts]
+MinecraftDockerCLI = "app.main"
+
 [tool.poetry.dependencies]
 python = "^3.13"
 fastapi = "^0.127.0"
